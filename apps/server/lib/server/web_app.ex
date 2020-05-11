@@ -8,14 +8,14 @@ defmodule Server.WebApp do
     response =
       %Response{status_code: "200", reason_phrase: "OK"}
       |> Response.add_content("Echo back from '#{context.path_vars[":id"]}' at dynamic #{context.request.uri} \n" <> Kernel.inspect(context))
-    struct(context, %{response: response})
+    %{context | response: response}
   end
 
   def handle_hello_static(_socket, context) do
     response =
       %Response{status_code: "200", reason_phrase: "OK"}
       |> Response.add_content("Echo back from static #{context.request.uri} \n" <> Kernel.inspect(context))
-    struct(context, %{response: response})
+    %{context | response: response}
   end
 
   def echo_request(_socket, context) do
