@@ -9,6 +9,8 @@ CSS/JS/etc files.
 Routing with dynamic paths should accomade basic API needs
 as well.
 
+## Configuration
+
 Routes can be configured with minimal DSL/macros:
 
 ```elixir
@@ -16,6 +18,10 @@ handle_with("GET", "/hello/:id", &Server.WebApp.handle_hello_dyn/2)
 handle_with("GET", "/hello/static", &Server.WebApp.handle_hello_static/2)
 handle_with("GET", "/test", &Server.TestHandler.handle_request/2)
 ```
+
+Full example/implementation can be seen here: [/apps/server/lib/server/web_app.ex](https://github.com/Hoffs/shttp/blob/master/apps/server/lib/server/web_app.ex)
+
+## Request/Response
 
 Request gets parsed and passed as context to the function along side the
 socket:
@@ -49,3 +55,5 @@ def handle_hello_dyn(_socket, context) do
   %{context | response: response}
 end
 ```
+
+Full example/implementation can be seen here (in this case file handler responsible for serving static content): [/apps/server/lib/server/file_handler.ex](https://github.com/Hoffs/shttp/blob/master/apps/server/lib/server/file_handler.ex)
